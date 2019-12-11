@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="plugins\readme.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="plugins\readme.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="McMaster.NETCore.Plugins" Version="0.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="xcopy &quot;$(SolutionDir)plugins\*.*&quot; &quot;$(ProjectDir)plugins&quot; /E /F /I /Y /R" />
+  </Target>
+
+</Project>

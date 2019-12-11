@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="offset0.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="offset0.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(TargetDir)*.*&quot; &quot;$(SolutionDir)plugins\$(ProjectName)&quot; /E /F /I /Y /R" />
+  </Target>
+
+</Project>

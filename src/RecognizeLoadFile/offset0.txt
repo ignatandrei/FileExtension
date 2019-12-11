@@ -1,0 +1,69 @@
+﻿#unknown sources
+52 49 46 46,ani
+2E 73 6E 64,au 
+42 4D F8 A9,bmp
+42 4D 62 25,bmp
+42 4D 76 03,bmp
+4D 53 43 46,cab 
+4D 5A 90 00,dll
+4D 5A 50 00,exe 
+46 4C 56 01,flv
+47 49 46 38,gif
+1F 8B 08 08,gz 
+FF D8 FF E1,jpg
+FF D8 FF E0,jpg 
+FF D8 FF FE,jpg 
+7F 45 4C 46,bin 
+89 50 4E 47,png 
+49 44 33 2E,mp3
+49 44 33 03,mp3
+4F 46 54 32,OFT
+25 50 44 46,PDF
+52 61 72 21,rar
+43 57 53 06,sfw
+1F 8B 08 00,tar
+1F 9D 90 70,tgz
+30 26 B2 75,wmv
+50 4B 03 04,zip
+#from https://en.wikipedia.org/wiki/List_of_file_signatures
+23 21,!#
+a1 b2 c3 d4,pcap
+d4 c3 b2 a1,pcap
+0a 0d 0d 0a,pcapng
+ed ab ee db,rpm
+53 51 4c 69 74 65,sqlitedb
+20 66 6f 72 6d 61,sqlite
+74 20 33 00,db
+BE BA FE CA,DBA
+00 01 42 44,DBA
+00 01 44 54,TDA
+54 44 46 24,TDF$
+54 44 45 46,TDEF
+00 00 01 00,ico
+1F 9D,tar.z
+1F A0,tar.z
+42 41 43 4B 4D 49,bac
+4B 45,bac
+44 49 53 4B,bac
+42 5A 68,bz2
+47 49 46 38 37 61,gif
+47 49 46 38 39 61,gif
+49 49 2A 00,tif
+4D 4D 00 2A,tif
+49 49 2A 00 10 00,cr2
+00 00,cr2
+43 52,cr2
+80 2A 5F D7,cin
+53 44 50 58,dpx
+58 50 44 53,dpx
+76 2F 31 01,exr
+42 50 47 FB,bpg
+FF D8 FF DB,jpg
+FF D8 FF E0 00 10,jpg
+4A 46 49 46 00 01,jpg
+FF D8 FF EE,jpg 
+#FF D8 FF E1 ?? ?? 45 78 69 66 00 00,jpg
+#https://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files
+25 21,ps
+37 7A BC AF 27 1C,7z
+#other sources

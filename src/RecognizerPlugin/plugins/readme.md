@@ -1,1 +1,1 @@
-﻿** Here are plugins
+here are plugins

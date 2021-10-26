@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy &quot;$(SolutionDir)plugins\*.*&quot; &quot;$(ProjectDir)plugins&quot; /E /F /I /Y /R" />
+    <Exec Command="xcopy &quot;$(ProjectDir)/../plugins/*.*&quot; &quot;$(ProjectDir)plugins&quot; /E /F /I /Y /R" />
   </Target>
 
 </Project>

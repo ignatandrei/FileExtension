@@ -17,7 +17,7 @@ namespace TestFileExtensions
             var r = new RecognizeCustomSigs();
 
             r.CanRecognizeExtension("chm").Should().BeTrue();
-            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.7z"))
+            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
             {
                 var f = File.ReadAllBytes(item);
                 r.RecognizeTheFile(f,item ).Should().Be(Recognize.Success);

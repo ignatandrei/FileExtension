@@ -19,12 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecognizeLoadFile", "Recogn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecognizerPlugin", "RecognizerPlugin\RecognizerPlugin.csproj", "{EDC6E8A8-8546-4F3C-AAEF-9E29F6073075}"
 	ProjectSection(ProjectDependencies) = postProject
+		{09D1205D-5A9E-4635-BCD9-78FE4C5DEF2D} = {09D1205D-5A9E-4635-BCD9-78FE4C5DEF2D}
 		{DCAA3976-762F-408B-86D6-7E30851EF7A1} = {DCAA3976-762F-408B-86D6-7E30851EF7A1}
 		{84757383-B05A-4AC9-ACCD-2048B9BF2803} = {84757383-B05A-4AC9-ACCD-2048B9BF2803}
 		{7F982DD3-6560-4136-A383-7F07A5229252} = {7F982DD3-6560-4136-A383-7F07A5229252}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecognizeCustomSigs_GCK", "RecognizeCustomSigs_GCK\RecognizeCustomSigs_GCK.csproj", "{09D1205D-5A9E-4635-BCD9-78FE4C5DEF2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecognizeCustomSigs_GCK", "RecognizeCustomSigs_GCK\RecognizeCustomSigs_GCK.csproj", "{09D1205D-5A9E-4635-BCD9-78FE4C5DEF2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

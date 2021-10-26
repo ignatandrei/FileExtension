@@ -17,26 +17,48 @@ namespace TestFileExtensions
     public class TestCustomSigs: FeatureFixture
     {
         RecognizeFileExt r;
+        string fileName;
+        byte[] bytesFile;
         [Scenario]
         [ScenarioCategory("TestSimple")]
-        public async void TestCHM1() 
+        public async void TestCHM() 
         {
             await Runner
+                
                .AddSteps(Given_The_Recognizer)
-               .AddSteps(_ => Then_Should_Recognize_Extension("chm"))
-               //.AddAsyncSteps(
-               //    _ => When_The_User_Access_The_Url("/recordVisitors/AllVisitors5Min")
-               //)
-               //.AddSteps(
-               //    _ => Then_The_Response_Should_Contain("JeanIrvine")
-
-               //)
+               .AddSteps(_ => Then_Should_Recognize_Extension("chm"))               
                .RunAsync();
+
+        }
+        [Scenario]
+        [ScenarioCategory("TestSimple")]
+        public async void TestCHM1()
+        {
+            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
+            {
+                fileName = item;
+                await Runner
+
+               .AddSteps(Given_The_Recognizer)
+               .AddSteps(
+                    _ => When_Read_The_File(fileName),
+                    _ => Then_Should_Recognize_File(fileName)
+               )
+               .RunAsync();
+            }
+        }
+        private void When_Read_The_File(string file)
+        {
+            bytesFile = File.ReadAllBytes(file);
 
         }
         private void Given_The_Recognizer()
         {
             r = new RecognizeCustomSigs();
+        }
+        private void Then_Should_Recognize_File(string file)
+        {
+            r.RecognizeTheFile(bytesFile, file).Should().Be(Recognize.Success);
         }
         private void Then_Should_Recognize_Extension(string ext)
         {

@@ -5,6 +5,7 @@ using LightBDD.XUnit2;
 using RecognizeCustomSigs_GCK;
 using RecognizeFileExtensionBL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -12,6 +13,26 @@ using Xunit;
 
 namespace TestFileExtensions
 {
+    public class CalculatorTestData :  IEnumerable<object[]>
+    {
+        public IEnumerator<object[]> GetEnumerator()
+        {
+            return GetData();
+        }
+
+        IEnumerator<object[]> GetData()
+        {
+            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
+            {
+                yield return new object[] { item };
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
     [FeatureDescription(@"test signatures")]
     [Label(nameof(TestCustomSigs))]
     public class TestCustomSigs: FeatureFixture
@@ -21,7 +42,7 @@ namespace TestFileExtensions
         byte[] bytesFile;
         [Scenario]
         [ScenarioCategory("TestSimple")]
-        public async void TestCHM() 
+        public async void TestCanRecognizeCHM() 
         {
             await Runner
                 
@@ -32,20 +53,20 @@ namespace TestFileExtensions
         }
         [Scenario]
         [ScenarioCategory("TestSimple")]
-        public async void TestCHM1()
+        [ClassData(typeof(CalculatorTestData))]
+        public async void TestMultipleFiles(string nameFile)
         {
-            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
-            {
-                fileName = item;
+            
+            
+                fileName = nameFile;
                 await Runner
-
                .AddSteps(Given_The_Recognizer)
                .AddSteps(
                     _ => When_Read_The_File(fileName),
                     _ => Then_Should_Recognize_File(fileName)
                )
                .RunAsync();
-            }
+            
         }
         private void When_Read_The_File(string file)
         {
@@ -58,6 +79,7 @@ namespace TestFileExtensions
         }
         private void Then_Should_Recognize_File(string file)
         {
+            StepExecution.Current.Comment($"recognizing:{Path.GetExtension(file)}");
             r.RecognizeTheFile(bytesFile, file).Should().Be(Recognize.Success);
         }
         private void Then_Should_Recognize_Extension(string ext)

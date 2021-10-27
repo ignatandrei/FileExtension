@@ -32,6 +32,30 @@ namespace TestFileExtensions
 
         }
         [Scenario]
+        [ScenarioCategory("Data")]
+        public async void EnumerateRecognizers()
+        {
+            await Runner
+           .AddSteps(Given_The_Recognizer)
+           .AddSteps(
+                _ => Then_EnumerateExtensions()
+
+           )
+           .RunAsync();
+
+        }
+        private void Then_EnumerateExtensions()
+        {
+            var recog = r.recognizes;
+            StepExecution.Current.Comment($"Number of recognizers:{ recog.Count} ");
+            foreach (var item in recog)
+            {
+                StepExecution.Current.Comment($"recognizing:{item.GetType().Name} {item.Extension}");
+
+            }
+
+        }
+        [Scenario]
         [ScenarioCategory("TestSimple")]
         [ClassData(typeof(DirectoryTestData))]
         public async void TestMultipleFiles(string nameFile)

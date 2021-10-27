@@ -23,4 +23,10 @@
     <Exec Command="xcopy &quot;$(TargetDir)*.*&quot; &quot;$(ProjectDir)/../plugins/$(ProjectName)&quot; /E /F /I /Y /R" />
   </Target>
 
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+
+  </PropertyGroup>
+
 </Project>

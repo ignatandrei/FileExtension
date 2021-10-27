@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace TestFileExtensions
@@ -61,16 +62,16 @@ namespace TestFileExtensions
                 fileName = nameFile;
                 await Runner
                .AddSteps(Given_The_Recognizer)
+               .AddAsyncSteps(_ => When_Read_The_File(fileName))
                .AddSteps(
-                    _ => When_Read_The_File(fileName),
                     _ => Then_Should_Recognize_File(fileName)
                )
                .RunAsync();
             
         }
-        private void When_Read_The_File(string file)
+        private async Task When_Read_The_File(string file)
         {
-            bytesFile = File.ReadAllBytes(file);
+            bytesFile = await File.ReadAllBytesAsync(file);
 
         }
         private void Given_The_Recognizer()

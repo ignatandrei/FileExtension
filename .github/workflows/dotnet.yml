@@ -27,6 +27,8 @@ jobs:
       run: |
           cd src 
           dotnet build --no-restore
+          #for copy to RecognizerPlugin plugins folder
+          dotnet build --no-restore 
     - name: Test
       run: |
           cd src 

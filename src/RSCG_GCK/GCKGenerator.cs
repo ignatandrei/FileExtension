@@ -25,19 +25,20 @@ namespace RSCG_GCK
                 var split = data.Split(',');
                 string ext = split[2].Trim();
                 ext = ext.Replace("|", "");
-                string className = $"RecognizeFromLine{ext}";
+                string className = $"RecognizeFromLine{classes.Count}_{ext}";
                 string content = $@"
 namespace {nameSpace} {{
-    public class {className}: RecognizeFromLineCustomsigs{{
+    class {className}: RecognizeFromLineCustomsigs{{
         public {className}(""{data}""): base(line)                
-
+        {{
+        }}
     }}
 }}            
 ";
                 context.AddSource($"generator{classes.Count}.cs",content);
                 classes.Add(className);
-                if (classes.Count == 2)
-                    break;
+                //if (classes.Count == 3)
+                //    break;
                 //var r = new RecognizeFromLineCustomsigs(l);
                 //recognizes.Add(r);
             }
@@ -45,7 +46,7 @@ namespace {nameSpace} {{
             context.AddSource("RecognizeCustomSigs_GCK_recognizes.cs", $@"
 namespace RecognizeCustomSigs_GCK
 {{
-    public partial class RecognizeCustomSigs
+    partial class RecognizeCustomSigs
     {{
         void AddRecognizers(){{
                 {add}

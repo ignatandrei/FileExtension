@@ -50,7 +50,8 @@ namespace TestFileExtensions
             StepExecution.Current.Comment($"Number of recognizers:{ recog.Count} ");
             foreach (var item in recog)
             {
-                StepExecution.Current.Comment($"recognizing:{item.GetType().Name} {item.Extension}");
+                string ext = string.Join(",", item.Extension);
+                StepExecution.Current.Comment($"recognizing:{ext}");
 
             }
 

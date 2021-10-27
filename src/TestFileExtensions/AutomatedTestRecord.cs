@@ -43,7 +43,7 @@ namespace TestFileExtensions
 
             foreach (var subStep in subSteps)
             {
-                string comments = string.Join(";", step.Comments);
+                string comments = string.Join(";<br />", step.Comments);
                 sb.AppendLine($"|{prefixStep}{subStep.Info.Number}|{subStep.Info.Name}|{subStep.Status}|{comments}|");
 
             }
@@ -77,7 +77,7 @@ namespace TestFileExtensions
                     sb.AppendLine("| ----------- | ----------- |----------- |----------- |");
                     foreach (var step in sc.GetSteps())
                     {
-                        string comments = string.Join(";", step.Comments);
+                        string comments = string.Join(";<br />", step.Comments);
                         var status = step.Status.ToString();
                         if (step.Status == ExecutionStatus.Failed)
                         {

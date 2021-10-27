@@ -23,11 +23,13 @@ namespace TestFileExtensions
         string[] extensions;
         [Scenario]
         [ScenarioCategory("TestSimple")]
-        public async void TestCanRecognizeCHM() 
+        public async void TestCanRecognizeSome() 
         {
             await Runner                
                .AddSteps(Given_The_Recognizer)
-               .AddSteps(_ => Then_Should_Recognize_Extension("chm"))               
+               .AddSteps(_ => Then_Should_Recognize_Extension("chm"))
+               .AddSteps(_ => Then_Should_Recognize_Extension("doc"))
+               .AddSteps(_ => Then_Should_Recognize_Extension("epub"))
             .RunAsync();
 
         }
@@ -71,7 +73,7 @@ namespace TestFileExtensions
                 .Select(it=>it.ToLowerInvariant())
                 .OrderBy(it => it)
                 .Distinct()
-                .ToArray();
+                .ToArray(); 
             StepExecution.Current.Comment($"Number of extensions :{ AllExtensions.Length} ");
             StepExecution.Current.Comment($"Percentage :{ (extensions.Length * 100 / AllExtensions.Length).ToString("#.00")} % ");
             foreach (var item in AllExtensions)
@@ -94,7 +96,6 @@ namespace TestFileExtensions
                 .AddSteps(
                     _ => Then_Should_Recognize_File(fileName),
                     _ => Then_The_Extension_Matches(fileName)
-
                 )
                 .RunAsync();
             
@@ -146,7 +147,7 @@ namespace TestFileExtensions
             foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
             {
                 var f = File.ReadAllBytes(item);
-                r.RecognizeTheFile(f,item ).Should().Be(Recognize.Success);
+                r.RecognizeTheFile(f,item ).Should().Be(Recognize.Success,$"cannot recognize {item}");
 
 
             }

@@ -432,7 +432,7 @@ OS X ABI Mach-O binary (32-bit reverse),CE FA ED FE,(none)
 Perfect Office document,CF 11 E0 A1 B1 1A E1 00,DOC
 Outlook Express e-mail folder,CF AD 12 FE,DBX
 OS X ABI Mach-O binary (64-bit reverse),CF FA ED FE,(none)
-#Microsoft Office document,D0 CF 11 E0 A1 B1 1A E1,DOC|DOT|PPS|PPT|XLA|XLS|WIZ
+Microsoft Office document,D0 CF 11 E0 A1 B1 1A E1,DOC|DOT|PPS|PPT|XLA|XLS|WIZ
 #CaseWare Working Papers,D0 CF 11 E0 A1 B1 1A E1,AC_
 #Access project file,D0 CF 11 E0 A1 B1 1A E1,ADP
 #Lotus|IBM Approach 97 file,D0 CF 11 E0 A1 B1 1A E1,APR

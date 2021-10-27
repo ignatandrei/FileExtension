@@ -22,7 +22,7 @@ namespace TestFileExtensions
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetData();
         }
     }
 }

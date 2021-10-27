@@ -14,8 +14,8 @@ using Xunit;
 namespace TestFileExtensions
 {
     [FeatureDescription(@"test signatures")]
-    [Label(nameof(TestCustomSigs))]
-    public class TestCustomSigs: FeatureFixture
+    [Label(nameof(TestFileExtensions.TestAll))]
+    public class TestAll: FeatureFixture
     {
         RecognizeFileExt r;
         string fileName;
@@ -46,13 +46,12 @@ namespace TestFileExtensions
         }
         private void Then_EnumerateExtensions()
         {
-            var recog = r.recognizes;
-            StepExecution.Current.Comment($"Number of recognizers:{ recog.Count} ");
-            foreach (var item in recog)
+            //var recog = r.recognizes;
+            var ext = r.AllExtensions().OrderBy(it => it).ToArray();
+            StepExecution.Current.Comment($"Number of extensions:{ ext.Length} ");
+            foreach (var item in ext)
             {
-                string ext = string.Join(",", item.Extension);
-                string name = item.GetType().Name;
-                StepExecution.Current.Comment($"{name}:{ext}");
+                StepExecution.Current.Comment($"{item}");
 
             }
 
@@ -113,7 +112,7 @@ namespace TestFileExtensions
         }
 
         [Fact]
-        public void TestAll()
+        public void TestAllFilesInFolder()
         {
             var r = new RecognizeCustomSigs();
 

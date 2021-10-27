@@ -131,12 +131,8 @@ namespace TestFileExtensions
             }
         }
         private void Then_Should_Recognize_File(string file)
-        {
-            if (file.EndsWith("epub"))
-            {
-                System.Diagnostics.Debugger.Break();
-            }
-            r.RecognizeTheFile(bytesFile, file).Should().Be(Recognize.Success);
+        {            
+            r.RecognizeTheFile(bytesFile, file).Should().Be(Recognize.Success,$"not recognize {file}");
         }
         private void Then_Should_Recognize_Extension(string ext)
         {

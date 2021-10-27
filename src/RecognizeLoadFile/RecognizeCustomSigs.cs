@@ -1,29 +1,28 @@
 ﻿using RecognizeFileExtensionBL;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Text;
 
-namespace RecognizeLoadFile
+namespace RecognizeCustomSigs_GCK
 {
-    public partial class RecognizeFileExtFromFile : RecognizeFileExt
+    public partial class RecognizeCustomSigs: RecognizeFileExt
     {
         partial void AddRecognizers();
-        public RecognizeFileExtFromFile()
+        public RecognizeCustomSigs()
         {
-            //var x = Assembly.GetExecutingAssembly().Location;
+            AddRecognizers();
 
-            
-            //var lines = File.ReadAllLines("offset0.txt");
+            //var lines = File.ReadAllLines("customsigs_GCK.txt");
             //foreach (var l in lines)
             //{
             //    var data = l.Replace("\r", "").Replace("\n", "").Trim();
             //    if (data.StartsWith("#"))//comment
             //        continue;
-            //    var r = new RecognizeFromLine(l);
+            //    if (string.IsNullOrEmpty(data))
+            //        continue;
+            //    var r = new RecognizeFromLineCustomsigs(l);
             //    recognizes.Add(r);
             //}
         }
+        
     }
 }

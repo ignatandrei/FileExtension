@@ -5,17 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="customsigs_GCK.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="customsigs_GCK.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj"   />
+    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
     <ProjectReference Include="..\RSCG_GCK\RSCG_GCK.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
   </ItemGroup>
 

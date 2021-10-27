@@ -50,7 +50,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RecognizeCustomSigs_GCK\RecognizeCustomSigs_GCK.csproj" />
     <ProjectReference Include="..\RecognizeDynamic\RecognizeDynamic.csproj" />
     <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
     <ProjectReference Include="..\RecognizeLoadFile\RecognizeLoadFile.csproj" />

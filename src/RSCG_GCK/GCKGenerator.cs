@@ -11,7 +11,8 @@ namespace RSCG_GCK
     {
         public void Execute(GeneratorExecutionContext context)
         {
-            var nameSpace = context.Compilation.Assembly.NamespaceNames.First();
+
+            var nameSpace = "RecognizeCustomSigs_GCK";
             var lines = File.ReadAllLines("customsigs_GCK.txt");
             List<string> classes = new ();
             foreach (var l in lines)
@@ -33,8 +34,10 @@ namespace {nameSpace} {{
     }}
 }}            
 ";
-                context.AddSource(className + ".cs",content);
+                context.AddSource($"generator{classes.Count}.cs",content);
                 classes.Add(className);
+                if (classes.Count == 2)
+                    break;
                 //var r = new RecognizeFromLineCustomsigs(l);
                 //recognizes.Add(r);
             }

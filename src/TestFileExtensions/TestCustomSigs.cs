@@ -51,7 +51,8 @@ namespace TestFileExtensions
             foreach (var item in recog)
             {
                 string ext = string.Join(",", item.Extension);
-                StepExecution.Current.Comment($"recognizing:{ext}");
+                string name = item.GetType().Name;
+                StepExecution.Current.Comment($"{name}:{ext}");
 
             }
 

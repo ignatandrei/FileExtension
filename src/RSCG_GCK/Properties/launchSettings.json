@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RSCG_GCK": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\RecognizeCustomSigs_GCK\\RecognizeCustomSigs_GCK.csproj"
+    }
+  }
+}

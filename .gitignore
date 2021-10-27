@@ -350,4 +350,5 @@ MigrationBackup/
 .ionide/
 
 #plugins
-**/plugins/
+**/RecognizerPlugin/plugins/
+src/plugins/Recog*/

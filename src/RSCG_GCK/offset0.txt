@@ -25,6 +25,7 @@ FF D8 FF FE,jpg
 1F 9D 90 70,tgz
 30 26 B2 75,wmv
 50 4B 03 04,zip
+50 4B 03 04 14,epub
 #from https://en.wikipedia.org/wiki/List_of_file_signatures
 23 21,!#
 a1 b2 c3 d4,pcap

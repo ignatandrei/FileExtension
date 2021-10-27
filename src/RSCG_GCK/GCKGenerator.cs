@@ -51,7 +51,7 @@ namespace RSCG_GCK
                     continue;
                 if (string.IsNullOrEmpty(data))
                     continue;
-                string className = $"RecognizeFromLine{classes.Count}";
+                string className = $"RecognizeFromOffsetLine{classes.Count}";
                 string content = $@"
 namespace {nameSpace} {{
     class {className}: RecognizeFromLine{{
@@ -106,7 +106,7 @@ namespace {nameSpace}
                 var split = data.Split(',');
                 string ext = split[2].Trim();
                 ext = ext.Replace("|", "");
-                string className = $"RecognizeFromLine{classes.Count}_{ext}";
+                string className = $"RecognizeFromGCKLine{classes.Count}_{ext}";
                 string content = $@"
 namespace {nameSpace} {{
     class {className}: RecognizeFromLineCustomsigs{{

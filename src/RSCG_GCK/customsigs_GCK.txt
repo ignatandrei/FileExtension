@@ -285,7 +285,7 @@ PKZIP archive_1,50 4B 03 04,ZIP
 #Mozilla Browser Archive,50 4B 03 04,XPI
 #XML paper specification file,50 4B 03 04,XPS
 #eXact Packager Models,50 4B 03 04,XPT
-Open Publication Structure eBook,50 4B 03 04 0A 00 02 00,EPUB
+#Open Publication Structure eBook,50 4B 03 04 0A 00 02 00,EPUB
 ZLock Pro encrypted ZIP,50 4B 03 04 14 00 01 00,ZIP
 MS Office 2007 documents,50 4B 03 04 14 00 06 00,DOCX|PPTX|XLSX
 Java archive_2,50 4B 03 04 14 00 08 00,JAR

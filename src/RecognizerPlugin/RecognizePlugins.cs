@@ -37,6 +37,7 @@ namespace RecognizerPlugin
                 var ass = loader.LoadDefaultAssembly();
                 
                 var types = ass.GetTypes();
+                var names = types.Select(it => it.Name).OrderBy(ut => ut).ToArray();
                 using (var c = new CurDir(Path.GetDirectoryName(ass.Location)))
                 {
                     foreach (var pluginType in types

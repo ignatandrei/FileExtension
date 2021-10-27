@@ -68,25 +68,25 @@ namespace TestFileExtensions
             //Assert.Empty(r.Duplicates());
         }
         
-        [Theory]
-        [ClassData(typeof(RecognizersFile))]
-        public void TestFilesToRecognize(RecognizeFileExt r)
-        {
+        //[Theory]
+        //[ClassData(typeof(RecognizersFile))]
+        //public void TestFilesToRecognize(RecognizeFileExt r)
+        //{
             
-            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*", SearchOption.TopDirectoryOnly))
-            {
-                var ext = Path.GetExtension(item);
-                var s = r.RecognizeTheFile(File.ReadAllBytes(item), ext);
-                if (r.CanRecognizeExtension(ext))
-                {
-                    Assert.Equal(Recognize.Success, s);
-                }
-                else
-                {
-                    Assert.Equal(Recognize.Failure, s);
-                }
-            }
-        }
+        //    foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*", SearchOption.TopDirectoryOnly))
+        //    {
+        //        var ext = Path.GetExtension(item);
+        //        var s = r.RecognizeTheFile(File.ReadAllBytes(item), ext);
+        //        if (r.CanRecognizeExtension(ext))
+        //        {
+        //            Assert.Equal(Recognize.Success, s);
+        //        }
+        //        else
+        //        {
+        //            Assert.Equal(Recognize.Failure, s);
+        //        }
+        //    }
+        //}
 
     }
 }

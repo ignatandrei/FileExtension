@@ -90,6 +90,7 @@ namespace TestFileExtensions
         public async void TestMultipleFiles(string nameFile)
         {
             fileName = nameFile;
+            
             await Runner
                 .AddSteps(Given_The_Recognizer)
                 .AddAsyncSteps(_ => When_Read_The_File(fileName))
@@ -131,6 +132,10 @@ namespace TestFileExtensions
         }
         private void Then_Should_Recognize_File(string file)
         {
+            if (file.EndsWith("epub"))
+            {
+                System.Diagnostics.Debugger.Break();
+            }
             r.RecognizeTheFile(bytesFile, file).Should().Be(Recognize.Success);
         }
         private void Then_Should_Recognize_Extension(string ext)
@@ -138,19 +143,19 @@ namespace TestFileExtensions
             r.CanRecognizeExtension("chm").Should().BeTrue();
         }
 
-        [Fact]
-        public void TestAllFilesInFolder()
-        {
-            var r = new RecognizeCustomSigs();
+        //[Fact]
+        //public void TestAllFilesInFolder()
+        //{
+        //    var r = new RecognizeCustomSigs();
 
-            r.CanRecognizeExtension("chm").Should().BeTrue();
-            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
-            {
-                var f = File.ReadAllBytes(item);
-                r.RecognizeTheFile(f,item ).Should().Be(Recognize.Success,$"cannot recognize {item}");
+        //    r.CanRecognizeExtension("chm").Should().BeTrue();
+        //    foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
+        //    {
+        //        var f = File.ReadAllBytes(item);
+        //        r.RecognizeTheFile(f,item ).Should().Be(Recognize.Success,$"cannot recognize {item}");
 
 
-            }
-        }
+        //    }
+        //}
     }
 }

@@ -12,9 +12,11 @@ namespace RecognizeLoadFile
         partial void AddRecognizers();
         public RecognizeFileExtFromFile()
         {
+
+            AddRecognizers();
             //var x = Assembly.GetExecutingAssembly().Location;
 
-            
+
             //var lines = File.ReadAllLines("offset0.txt");
             //foreach (var l in lines)
             //{

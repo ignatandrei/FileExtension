@@ -37,28 +37,28 @@ namespace TestFileExtensions
 
         public class TestFolder
     {
-        [Theory]
-        [ClassData(typeof(RecognizersFile))]
-        public void TestContentFile(RecognizeFileExt r)
-        {
-            r.NumberRecognizers.Should().BeGreaterThan(0, "have some recognizers");
-            //Assert.True(r.NumberRecognizers > 0);
-            foreach (var item in Directory.EnumerateFiles(@"TestFiles","*.*",SearchOption.TopDirectoryOnly))
-            {
-                var ext = Path.GetExtension(item);
-                var s = r.PossibleExtensions(File.ReadAllBytes(item));
-                if (r.CanRecognizeExtension(ext))
-                {
-                    s.Should().HaveCountGreaterThan(0, $"for {r.GetType().Name} extension {ext} recognized , but not found in possible extension");
-                    //Assert.True(s.Any());
-                }
-                else
-                {
-                    s.Should().BeEmpty($"for {r.GetType().Name} extension {ext} recognized , but not found in possible extension");
-                    //Assert.False(s.Any());
-                }
-            }
-        }
+        //[Theory]
+        //[ClassData(typeof(RecognizersFile))]
+        //public void TestContentFile(RecognizeFileExt r)
+        //{
+        //    r.NumberRecognizers.Should().BeGreaterThan(0, "have some recognizers");
+        //    //Assert.True(r.NumberRecognizers > 0);
+        //    foreach (var item in Directory.EnumerateFiles(@"TestFiles","*.*",SearchOption.TopDirectoryOnly))
+        //    {
+        //        var ext = Path.GetExtension(item);
+        //        var s = r.PossibleExtensions(File.ReadAllBytes(item));
+        //        if (r.CanRecognizeExtension(ext))
+        //        {
+        //            s.Should().HaveCountGreaterThan(0, $"for {r.GetType().Name} extension {ext} recognized , but not found in possible extension");
+        //            //Assert.True(s.Any());
+        //        }
+        //        else
+        //        {
+        //            s.Should().BeEmpty($"for {r.GetType().Name} extension {ext} recognized , but not found in possible extension");
+        //            //Assert.False(s.Any());
+        //        }
+        //    }
+        //}
         [Theory]
         [ClassData(typeof(RecognizersFile))]
         public void TestDuplicates(RecognizeFileExt r)

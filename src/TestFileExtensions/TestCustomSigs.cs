@@ -4,6 +4,7 @@ using LightBDD.Framework.Scenarios;
 using LightBDD.XUnit2;
 using RecognizeCustomSigs_GCK;
 using RecognizeFileExtensionBL;
+using RecognizerPlugin;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using Xunit;
 
 namespace TestFileExtensions
 {
-    public class CalculatorTestData :  IEnumerable<object[]>
+    public class DirectoryTestData :  IEnumerable<object[]>
     {
         public IEnumerator<object[]> GetEnumerator()
         {
@@ -54,33 +55,48 @@ namespace TestFileExtensions
         }
         [Scenario]
         [ScenarioCategory("TestSimple")]
-        [ClassData(typeof(CalculatorTestData))]
+        [ClassData(typeof(DirectoryTestData))]
         public async void TestMultipleFiles(string nameFile)
         {
-            
-            
                 fileName = nameFile;
                 await Runner
                .AddSteps(Given_The_Recognizer)
                .AddAsyncSteps(_ => When_Read_The_File(fileName))
                .AddSteps(
-                    _ => Then_Should_Recognize_File(fileName)
+                    _ => Then_Should_Recognize_File(fileName),
+                    _ => Then_The_Extension_Matches(fileName)
+
                )
                .RunAsync();
             
         }
         private async Task When_Read_The_File(string file)
         {
+            StepExecution.Current.Comment($"recognizing:{Path.GetExtension(file)}");
             bytesFile = await File.ReadAllBytesAsync(file);
 
         }
         private void Given_The_Recognizer()
         {
-            r = new RecognizeCustomSigs();
+            r = new RecognizePlugins();
+        }
+        private void Then_The_Extension_Matches(string file)
+        {
+            var ext = Path.GetExtension(file);
+            var s = r.PossibleExtensions(bytesFile);
+            if (r.CanRecognizeExtension(ext))
+            {
+                s.Should().HaveCountGreaterThan(0, $"for {r.GetType().Name} extension {ext} recognized , but not found in possible extension");
+                //Assert.True(s.Any());
+            }
+            else
+            {
+                s.Should().BeEmpty($"for {r.GetType().Name} extension {ext} recognized , but not found in possible extension");
+                //Assert.False(s.Any());
+            }
         }
         private void Then_Should_Recognize_File(string file)
         {
-            StepExecution.Current.Comment($"recognizing:{Path.GetExtension(file)}");
             r.RecognizeTheFile(bytesFile, file).Should().Be(Recognize.Success);
         }
         private void Then_Should_Recognize_Extension(string ext)

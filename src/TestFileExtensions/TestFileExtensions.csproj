@@ -54,10 +54,14 @@
     <ProjectReference Include="..\RecognizeDynamic\RecognizeDynamic.csproj" />
     <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
     <ProjectReference Include="..\RecognizeLoadFile\RecognizeLoadFile.csproj" />
+    <ProjectReference Include="..\RecognizerPlugin\RecognizerPlugin.csproj" />
     <ProjectReference Include="..\RecognizeStatic\RecognizeStatic.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestFiles\andrei.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="TestFiles\andrei.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

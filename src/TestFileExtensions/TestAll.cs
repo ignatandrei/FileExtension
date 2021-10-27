@@ -38,36 +38,42 @@ namespace TestFileExtensions
             await Runner
                .AddSteps(Given_The_Recognizer)
                .AddSteps(
-                    _ => Then_EnumerateExtensionsRecognized(),
-                    _ => Then_EnumerateExtensions()
+                    _ => Then_Enumerate_Extensions_Recognized(),
+                    _ => Then_Enumerate_Extensions_Can_Be_Recognized()
                     
                )
            .RunAsync();
 
         }
-        private void Then_EnumerateExtensionsRecognized()
+        private void Then_Enumerate_Extensions_Recognized()
         {
             extensions = new DirectoryTestData().ToArray()
                 .Select(it=> Path.GetExtension(it.First().ToString()))
                 .Where(it=>it.StartsWith("."))
                 .Select(it=>it.Substring(1))
-                .OrderBy(it=>it.ToLowerInvariant())
+                .Select(it => it.ToLowerInvariant())
+                .OrderBy(it=>it)
                 .Distinct()
                 .ToArray()
                 ;
             StepExecution.Current.Comment($"Number of files recognized:{ extensions.Length} ");
             foreach (var item in extensions)
             {
-                StepExecution.Current.Comment($"{item}");
-                
+                StepExecution.Current.Comment($"{item}");                
             }
         }
 
-        private void Then_EnumerateExtensions()
+        private void Then_Enumerate_Extensions_Can_Be_Recognized()
         {
             //var recog = r.recognizes;
-            var AllExtensions= r.AllExtensions().OrderBy(it => it.ToLowerInvariant()).ToArray();
+            var AllExtensions= r
+                .AllExtensions()
+                .Select(it=>it.ToLowerInvariant())
+                .OrderBy(it => it)
+                .Distinct()
+                .ToArray();
             StepExecution.Current.Comment($"Number of extensions :{ AllExtensions.Length} ");
+            StepExecution.Current.Comment($"Percentage :{ (extensions.Length * 100 / AllExtensions.Length).ToString("#.00")} % ");
             foreach (var item in AllExtensions)
             {
                 string text = $"{item} {(extensions.Contains(item) ? ":Tested" : "Not Tested")}";

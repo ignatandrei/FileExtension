@@ -11,19 +11,9 @@
     <WarningsAsErrors />
   </PropertyGroup>
 
+  
   <ItemGroup>
-    <None Remove="TestFiles\adces1.png" />
-    <None Remove="TestFiles\mytest.7z" />
-    <None Remove="TestFiles\mytest.pdf" />
-    <None Remove="TestFiles\mytest.txt" />
-    <None Remove="TestFiles\mytest.xps" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="TestFiles\mytest.7z">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestFiles\mytest.pdf">
+    <Content Include="TestFiles\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -43,12 +33,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="TestFiles\adces1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\RecognizeDynamic\RecognizeDynamic.csproj" />
     <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
@@ -57,16 +42,5 @@
     <ProjectReference Include="..\RecognizeStatic\RecognizeStatic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="TestFiles\andrei.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TestFiles\andrei.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TestFiles\mmc.CHM">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
+  
 </Project>

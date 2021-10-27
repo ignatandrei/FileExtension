@@ -14,21 +14,21 @@ using Xunit;
 namespace TestFileExtensions
 {
     [FeatureDescription(@"test signatures")]
-    [Label(nameof(TestFileExtensions.TestAll))]
+    [Label(nameof(TestAll))]
     public class TestAll: FeatureFixture
     {
         RecognizeFileExt r;
         string fileName;
         byte[] bytesFile;
+        string[] extensions;
         [Scenario]
         [ScenarioCategory("TestSimple")]
         public async void TestCanRecognizeCHM() 
         {
-            await Runner
-                
+            await Runner                
                .AddSteps(Given_The_Recognizer)
                .AddSteps(_ => Then_Should_Recognize_Extension("chm"))               
-               .RunAsync();
+            .RunAsync();
 
         }
         [Scenario]
@@ -36,22 +36,42 @@ namespace TestFileExtensions
         public async void EnumerateRecognizers()
         {
             await Runner
-           .AddSteps(Given_The_Recognizer)
-           .AddSteps(
-                _ => Then_EnumerateExtensions()
-
-           )
+               .AddSteps(Given_The_Recognizer)
+               .AddSteps(
+                    _ => Then_EnumerateExtensionsRecognized(),
+                    _ => Then_EnumerateExtensions()
+                    
+               )
            .RunAsync();
 
         }
+        private void Then_EnumerateExtensionsRecognized()
+        {
+            extensions = new DirectoryTestData().ToArray()
+                .Select(it=> Path.GetExtension(it.First().ToString()))
+                .Where(it=>it.StartsWith("."))
+                .Select(it=>it.Substring(1))
+                .OrderBy(it=>it.ToLowerInvariant())
+                .Distinct()
+                .ToArray()
+                ;
+            StepExecution.Current.Comment($"Number of files recognized:{ extensions.Length} ");
+            foreach (var item in extensions)
+            {
+                StepExecution.Current.Comment($"{item}");
+                
+            }
+        }
+
         private void Then_EnumerateExtensions()
         {
             //var recog = r.recognizes;
-            var ext = r.AllExtensions().OrderBy(it => it).ToArray();
-            StepExecution.Current.Comment($"Number of extensions:{ ext.Length} ");
-            foreach (var item in ext)
+            var AllExtensions= r.AllExtensions().OrderBy(it => it.ToLowerInvariant()).ToArray();
+            StepExecution.Current.Comment($"Number of extensions :{ AllExtensions.Length} ");
+            foreach (var item in AllExtensions)
             {
-                StepExecution.Current.Comment($"{item}");
+                string text = $"{item} {(extensions.Contains(item) ? ":Tested" : "Not Tested")}";
+                StepExecution.Current.Comment(text);
 
             }
 
@@ -61,16 +81,16 @@ namespace TestFileExtensions
         [ClassData(typeof(DirectoryTestData))]
         public async void TestMultipleFiles(string nameFile)
         {
-                fileName = nameFile;
-                await Runner
-               .AddSteps(Given_The_Recognizer)
-               .AddAsyncSteps(_ => When_Read_The_File(fileName))
-               .AddSteps(
+            fileName = nameFile;
+            await Runner
+                .AddSteps(Given_The_Recognizer)
+                .AddAsyncSteps(_ => When_Read_The_File(fileName))
+                .AddSteps(
                     _ => Then_Should_Recognize_File(fileName),
                     _ => Then_The_Extension_Matches(fileName)
 
-               )
-               .RunAsync();
+                )
+                .RunAsync();
             
         }
         private async Task When_Read_The_File(string file)

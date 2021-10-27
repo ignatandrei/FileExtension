@@ -62,12 +62,22 @@ namespace TestFileExtensions
             sb.AppendLine("");
             foreach (var par in parents)
             {
-                var items = categories.Where(it => it.Info.Parent == par).ToArray();
+                var items = categories
+                    .Where(it => it.Info.Parent == par)
+                    .OrderBy(it=>it.Info.ToString())
+                    .ToArray();
                 if (items.Length == 0)
                     continue;
                 sb.AppendLine("");
                 sb.AppendLine($"## {par.Name}");
                 sb.AppendLine("");
+                var failed = items.Where(it => it.Status == ExecutionStatus.Failed).ToArray();
+                if (failed.Length > 0)
+                {
+                    foreach (var sc in failed) {
+                        sb.AppendLine($"FAILED <span style='color: red'>{sc.Info}</span>");
+                    }
+                }
                 foreach (var sc in items)
                 {
                     sb.AppendLine("");

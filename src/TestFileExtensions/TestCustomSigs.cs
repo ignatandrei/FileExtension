@@ -5,36 +5,14 @@ using LightBDD.XUnit2;
 using RecognizeCustomSigs_GCK;
 using RecognizeFileExtensionBL;
 using RecognizerPlugin;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace TestFileExtensions
 {
-    public class DirectoryTestData :  IEnumerable<object[]>
-    {
-        public IEnumerator<object[]> GetEnumerator()
-        {
-            return GetData();
-        }
-
-        IEnumerator<object[]> GetData()
-        {
-            foreach (var item in Directory.EnumerateFiles(@"TestFiles", "*.*"))
-            {
-                yield return new object[] { item };
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
     [FeatureDescription(@"test signatures")]
     [Label(nameof(TestCustomSigs))]
     public class TestCustomSigs: FeatureFixture
@@ -83,11 +61,15 @@ namespace TestFileExtensions
         private void Then_The_Extension_Matches(string file)
         {
             var ext = Path.GetExtension(file);
-            var s = r.PossibleExtensions(bytesFile);
+            var s = r.PossibleExtensions(bytesFile)
+                .Select(it=>it.ToUpper())
+                .ToArray();
             if (r.CanRecognizeExtension(ext))
             {
                 s.Should().HaveCountGreaterThan(0, $"for {r.GetType().Name} extension {ext} recognized , but not found in possible extension");
                 //Assert.True(s.Any());
+                ext = ext.Replace(".", "").ToUpper();
+                s.Should().Contain(ext, $"{ext} must have been recognized properly");
             }
             else
             {

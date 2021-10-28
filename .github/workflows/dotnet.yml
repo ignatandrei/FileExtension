@@ -28,17 +28,32 @@ jobs:
           cd src 
           dotnet build
           dotnet build 
+          cd RecognizerPlugin
+          dotnet pack --output pack
     - name: Test
       run: |
           cd src 
           dotnet test
 
-    - name: 'Upload artifact'
+    - name: 'Upload artifact test'
       uses: actions/upload-artifact@v2
       if: ${{always()}}
       with:
         name: FileExtensions_RunTest_${{github.run_number}}
         path: src/TestFileExtensions/bin/Debug/net5.0/Reports
+        retention-days: 1
+
+    - name: Pack
+      run: |
+          cd src 
+          cd RecognizerPlugin
+          dotnet pack --output pack
+
+    - name: 'Upload artifact pack'
+      uses: actions/upload-artifact@v2
+      with:
+        name: FileExtensions_Nuget_${{github.run_number}}
+        path: src/RecognizerPlugin/pack/
         retention-days: 1
           
     - name: Codecov generator
@@ -55,3 +70,4 @@ jobs:
         files: src/coverage.opencover.xml 
         fail_ci_if_error: true # optional (default = false)
         #verbose: true # optional (default = false)
+    

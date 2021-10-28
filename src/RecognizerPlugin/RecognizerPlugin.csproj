@@ -2,27 +2,64 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="plugins\readme.md" />
   </ItemGroup>
+  <ItemGroup>
+  <None Include="../../readme.md" Pack="true" PackagePath="\" />
+  <None Include="../../docs/icons/fe.png" Pack="true" PackagePath="\" />  
+</ItemGroup>
 
   <ItemGroup>
     <Content Include="plugins\**\*.*">
+      <PackagePath>lib\plugins\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="McMaster.NETCore.Plugins" Version="1.4.0" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" >
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
+    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj"  PrivateAssets="all" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="xcopy &quot;$(ProjectDir)../plugins/*.*&quot; &quot;$(ProjectDir)plugins&quot; /E /F /I /Y /R" />
   </Target>
+<PropertyGroup>
+  <Version>2021.10.28.1900</Version>
+  <PackageVersion>2021.10.28.1900</PackageVersion>
+  <Authors>Andrei Ignat</Authors>
+  <Description>This package identifies the file after the extension.</Description>
+  <Title>FileExtension</Title>
+  <PackageId>FileExtension</PackageId>
+  <PackageTags>C#;.NET;ASP.NET Core;FileExtension;</PackageTags>
+  <PackageReadmeFile>readme.md</PackageReadmeFile>
+  <PackageIcon>fe.png</PackageIcon>
+  <RepositoryUrl>https://github.com/ignatandrei/FileExtension</RepositoryUrl>
+  <PackageProjectUrl>https://github.com/ignatandrei/FileExtension</PackageProjectUrl>
+  <RepositoryType>GIT</RepositoryType>
+  <Copyright>MIT</Copyright>
+  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  <IncludeSymbols>true</IncludeSymbols>
+  <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  <Deterministic>true</Deterministic>
+  <DebugType>embedded</DebugType>
 
+</PropertyGroup>
+<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+</PropertyGroup>
 </Project>

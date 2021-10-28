@@ -33,3 +33,11 @@ jobs:
       run: |
           cd src 
           dotnet test --no-build --verbosity normal
+
+    - name: 'Upload artifact'
+      uses: actions/upload-artifact@v2
+      with:
+        name: RunTest_${{github.run_number}}
+        path: src/TestFileExtensions/bin/Debug/net5.0/Reports
+        retention-days: 1
+          

@@ -26,7 +26,8 @@ jobs:
     - name: Build
       run: |
           cd src 
-          dotnet build --no-restore
+          dotnet build
+          dotnet build 
     - name: Test
       run: |
           cd src 
@@ -36,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{always()}}
       with:
-        name: RunTest_${{github.run_number}}
+        name: FileExtensions_RunTest_${{github.run_number}}
         path: src/TestFileExtensions/bin/Debug/net5.0/Reports
         retention-days: 1
           

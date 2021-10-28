@@ -41,3 +41,17 @@ jobs:
         path: src/TestFileExtensions/bin/Debug/net5.0/Reports
         retention-days: 1
           
+    - name: Codecov
+      uses: codecov/codecov-action@v2.1.0
+      run: |
+        cd src
+        dotnet coverlet TestFileExtensions\bin\Debug\net5.0\TestFileExtensions.dll --target "dotnet" --targetargs "test RecognizeFileExtension.sln --no-build"  --format opencover --exclude "[SampleWeb*]*"  --exclude "[xunit*]*" --verbosity detailed
+        #dotnet coverlet TestFileExtensions\bin\Debug\net5.0\TestFileExtensions.dll --target "dotnet" --targetargs "test RecognizeFileExtension.sln"  --format opencover  --verbosity detailed
+        dotnet reportgenerator "-reports:coverage.opencover.xml" "-targetdir:coveragereport" "-reporttypes:HTMLInline;HTMLSummary;Badges"
+
+
+    - uses: codecov/codecov-action@v1
+      with:
+        files: src/coverage.opencover.xml 
+        fail_ci_if_error: true # optional (default = false)
+        #verbose: true # optional (default = false)

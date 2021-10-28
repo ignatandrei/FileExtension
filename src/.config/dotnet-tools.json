@@ -7,6 +7,36 @@
       "commands": [
         "pwsh"
       ]
+    },
+    "dotnet-reportgenerator-globaltool": {
+      "version": "4.8.13",
+      "commands": [
+        "reportgenerator"
+      ]
+    },
+    "coverlet.console": {
+      "version": "3.1.0",
+      "commands": [
+        "coverlet"
+      ]
+    },
+    "coveralls.net": {
+      "version": "3.0.0",
+      "commands": [
+        "csmacnz.Coveralls"
+      ]
+    },
+    "xunit-cli": {
+      "version": "0.1.14",
+      "commands": [
+        "xunit"
+      ]
+    },
+    "dotnet-sonarscanner": {
+      "version": "5.3.2",
+      "commands": [
+        "dotnet-sonarscanner"
+      ]
     }
   }
 }

@@ -30,6 +30,7 @@ namespace TestFileExtensions
                .AddSteps(_ => Then_Should_Recognize_Extension("chm"))
                .AddSteps(_ => Then_Should_Recognize_Extension("doc"))
                .AddSteps(_ => Then_Should_Recognize_Extension("epub"))
+               .AddSteps(_ => Then_Should_Not_Recognize_Extension("alabalaportocala"))
             .RunAsync();
 
         }
@@ -136,9 +137,12 @@ namespace TestFileExtensions
         }
         private void Then_Should_Recognize_Extension(string ext)
         {
-            r.CanRecognizeExtension("chm").Should().BeTrue();
+            r.CanRecognizeExtension(ext).Should().BeTrue();
         }
-
+        private void Then_Should_Not_Recognize_Extension(string ext)
+        {
+            r.CanRecognizeExtension(ext).Should().BeFalse();
+        }
         //[Fact]
         //public void TestAllFilesInFolder()
         //{

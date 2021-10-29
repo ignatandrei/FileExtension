@@ -1,19 +1,22 @@
 # FileExtension
 Recognizers of file extensions
-
 [![codecov](https://codecov.io/gh/ignatandrei/FileExtension/branch/master/graph/badge.svg?token=UA3ZA1KDQ5)](https://codecov.io/gh/ignatandrei/FileExtension)
-
 [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/FileExtension/) 
-
 [![.NET](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml)
-
-
 [![Docs](https://readthedocs.org/projects/fileextension/badge/?version=latest)](https://fileextension.readthedocs.io/en/latest/)
 
 # What it does
 
 This project helps you to see that a file has the correct extension
 
+# What it recognize
+
+There are 344 extensions of files ( 16 tested) .
+See https://fileextension.readthedocs.io/en/latest/BDD/LightBDDReport/
+
+Please help by making a PR by adding files to  https://github.com/ignatandrei/FileExtension/tree/master/src/TestFileExtensions/TestFiles
+
+ 
 # How to use it
 
 ## Simple use

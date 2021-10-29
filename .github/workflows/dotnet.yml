@@ -93,17 +93,17 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
-        cd src/TestFileExtensions
+        cd src
         dotnet dotnet-sonarscanner begin /k:"ignatandrei_FileExtension" /o:"ignatandrei-github" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"        
         dotnet build
         dotnet dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
     - name: helper - see Outdated, thanks , licences and depends
       run: |
-        cd src/TestFileExtensions/        
+        cd src        
         dotnet dotnet-outdated
         dotnet dotnet-thx 
-        dotnet dotnet-project-licenses -i .\TestFileExtensions.sln 
+        dotnet dotnet-project-licenses -i .\RecognizeFileExtension.sln 
         # dotnet dotnet-versionit  --skip-dirty --skip-commit  -r 2021.5.31.1755 
         # dotnet dotnet-depends
     

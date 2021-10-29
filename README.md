@@ -8,7 +8,7 @@ Recognizers of file extensions
 [![.NET](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml)
 
 
-[![Docs](https://readthedocs.org/projects/FileExtension/badge/?version=latest)](https://fileextension.readthedocs.io/en/latest/)
+[![Docs](https://readthedocs.org/projects/fileextension/badge/?version=latest)](https://fileextension.readthedocs.io/en/latest/)
 
 # What it does
 

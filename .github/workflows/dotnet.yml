@@ -103,7 +103,7 @@ jobs:
         cd src/TestFileExtensions/        
         dotnet dotnet-outdated
         dotnet dotnet-thx 
-        dotnet dotnet-project-licenses -i .\RecordVisitors.sln 
+        dotnet dotnet-project-licenses -i .\TestFileExtensions.sln 
         # dotnet dotnet-versionit  --skip-dirty --skip-commit  -r 2021.5.31.1755 
         # dotnet dotnet-depends
     

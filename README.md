@@ -24,15 +24,31 @@ Please help by making a PR by adding files to  https://github.com/ignatandrei/Fi
 Add a reference to [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/FileExtension/) ,
  
 ```csharp
-static void Main(string[] args)
+Console.WriteLine("Hello World!");
+var r = new RecognizerPlugin.RecognizePlugins();
+foreach (var item in r.AllExtensions())
 {
-    Console.WriteLine("Hello World!");
-    var r = new RecognizerPlugin.RecognizePlugins();
-    foreach (var item in r.AllExtensions())
-    {
-        Console.WriteLine(item);
-    }
+    Console.WriteLine(item);
 }
+//find the sln
+var dir =new DirectoryInfo( Directory.GetCurrentDirectory());
+while(dir != null){
+    string file = Directory.GetFiles(dir.FullName, "*.sln").FirstOrDefault();
+    if(file == null)
+    {
+        dir = dir.Parent;
+        continue;
+    }
+    var fileExtension = Path.GetExtension(file);
+    var canRecognize = r.CanRecognizeExtension(fileExtension);
+    Console.WriteLine($"file {file} can be  recognized {canRecognize}");
+    //found sln, now recognize
+    var byts = await File.ReadAllBytesAsync(file);
+    var found = r.RecognizeTheFile(byts, fileExtension);
+    Console.Write($"file {file} is recognized {found}");
+    return;
+}
+
 ```
 
 
@@ -55,11 +71,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-Also, thanks to the people that made this possible by created frameworks and libraries - see the list here
-
-https://github.com/ignatandrei/RecordVisitors/blob/main/src/RecordVisitors/thanks.md
-
 ## Links
 
 - Project homepage: https://github.com/ignatandrei/FileExtension/ 
@@ -67,11 +78,11 @@ https://github.com/ignatandrei/RecordVisitors/blob/main/src/RecordVisitors/thank
 - Results of tests in BDD format : https://record-visitors.readthedocs.io/en/latest/BDD/LightBDDReport/ 
 - Code analysis: https://sonarcloud.io/dashboard?id=ignatandrei_RecordVisitors
 - Repository: https://github.com/ignatandrei/FileExtension/
-- Issue tracker: https://github.com/ignatandrei/RecordVisitors/issues
-- Documentation: https://record-visitors.readthedocs.io/en/latest/ 
+- Issue tracker: https://github.com/ignatandrei/FileExtension/issues
+- Documentation: https://fileextension.readthedocs.io/en/latest/ 
 - Blog: http://msprogrammer.serviciipeweb.ro/category/FileExtension/ 
 
 ## Licence
 
 The code in this project is licensed under MIT license.
-You can find the licences for the packages used at https://github.com/ignatandrei/RecordVisitors/blob/main/src/RecordVisitors/licenses.txt 
+<!-- You can find the licences for the packages used at https://github.com/ignatandrei/FileExtension/blob/main/src/RecordVisitors/licenses.txt  -->

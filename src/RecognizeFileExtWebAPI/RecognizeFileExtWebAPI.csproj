@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" />
     <ProjectReference Include="..\RecognizerPlugin\RecognizerPlugin.csproj" />
   </ItemGroup>
 

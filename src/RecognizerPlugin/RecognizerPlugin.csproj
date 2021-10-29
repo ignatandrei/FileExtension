@@ -15,15 +15,24 @@
 </ItemGroup>
 
   <ItemGroup>
-    <Content Include="plugins\**\*.*">
-      <PackagePath>lib\net5.0\plugins\</PackagePath>
+    <None Remove="plugins\FileExtension.targets" />
+  <Content Include="plugins\FileExtension.targets">
+    <PackagePath>build\net5.0\</PackagePath>
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="plugins\**\*.dll">
+      <PackagePath>build\net5.0\plugins\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="McMaster.NETCore.Plugins" Version="1.4.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7" >
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -31,14 +40,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj"  PrivateAssets="all" />
+    <ProjectReference Include="..\RecognizeFileExtensionBL\RecognizeFileExtensionBL.csproj" PrivateAssets="all" />
   </ItemGroup>
+  
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy &quot;$(ProjectDir)../plugins/*.*&quot; &quot;$(ProjectDir)plugins&quot; /E /F /I /Y /R" />
+    <Exec Command="xcopy &quot;$(ProjectDir)../plugins/*.dll&quot; &quot;$(ProjectDir)plugins&quot; /E /F /I /Y /R" />
   </Target>
 <PropertyGroup>
-  <Version>2021.10.28.1950</Version>
+  <Version>2021.10.29.0540</Version>
   <Authors>Andrei Ignat</Authors>
   <Description>This package identifies the file after the extension.</Description>
   <Title>FileExtension</Title>

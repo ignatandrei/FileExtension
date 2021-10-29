@@ -4,7 +4,7 @@ Recognizers of file extensions
 [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/FileExtension/) 
 [![.NET](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml)
 [![Docs](https://readthedocs.org/projects/fileextension/badge/?version=latest)](https://fileextension.readthedocs.io/en/latest/)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ignatandrei_FileExtension&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ignatandrei_FileExtension)
 # What it does
 
 This project helps you to see that a file has the correct extension

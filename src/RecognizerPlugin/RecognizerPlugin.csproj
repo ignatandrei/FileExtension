@@ -48,7 +48,7 @@
     <Exec Command="xcopy &quot;$(ProjectDir)../plugins/*.dll&quot; &quot;$(ProjectDir)plugins&quot; /E /F /I /Y /R" />
   </Target>
 <PropertyGroup>
-  <Version>2021.10.29.0540</Version>
+  <Version>2021.10.29.2108</Version>
   <Authors>Andrei Ignat</Authors>
   <Description>This package identifies the file after the extension.</Description>
   <Title>FileExtension</Title>

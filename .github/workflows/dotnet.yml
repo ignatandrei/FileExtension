@@ -84,7 +84,7 @@ jobs:
       shell: powershell
       run: |
         cd src/TestFileExtensions
-        dotnet dotnet-sonarscanner begin /k:"ignatandrei_RecordVisitors" /o:"ignatandrei-github" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"        
+        dotnet dotnet-sonarscanner begin /k:"ignatandrei_FileExtension" /o:"ignatandrei-github" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"        
         dotnet build
         dotnet dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 

@@ -25,8 +25,7 @@ Please help by making a PR by adding files to  https://github.com/ignatandrei/Fi
 
 Demo online: https://fileextension.azurewebsites.net/swagger/index.html
 
-NuGet Package: [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/
-FileExtension/)
+NuGet Package: [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/FileExtension/) 
 
 ## Simple use 
 
@@ -62,9 +61,11 @@ while(dir != null){
 }
 
 ```
-### Javascript / TypeScript
+### Angular / TypeScript
 
-TBD
+For calling the service , please see https://github.com/ignatandrei/FileExtension/blob/master/src/FileExtensionAng/src/app/services/FileExtv1.service.ts
+
+For a component, please see https://github.com/ignatandrei/FileExtension/tree/master/src/FileExtensionAng/src/app/file-ext-v1
 
 ## Contributors ✨
 

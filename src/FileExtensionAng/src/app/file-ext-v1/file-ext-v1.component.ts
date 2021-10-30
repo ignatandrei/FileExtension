@@ -21,5 +21,18 @@ export class FileExtV1Component implements OnInit {
       }
     );  
   }
+  uploadFile(file:FileList| null){
+    if(file == null || file.length == 0)
+      return;
+    var f=file[0];
+    this.svc.VerifyFile(f).subscribe(
+      data => {
+        window.alert("Result: "+data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
 }

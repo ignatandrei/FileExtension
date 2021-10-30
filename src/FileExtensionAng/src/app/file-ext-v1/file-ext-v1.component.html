@@ -1,4 +1,11 @@
 <p></p>
+
+
+<input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+<button  mat-raised-button color="primary" type="button" (click)="file.click()">Verify file</button>
+<p></p>
+
+
 <mat-accordion>
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>

@@ -1,5 +1,10 @@
 # FileExtension
 Recognizers of file extensions
+[![GitHub repo](https://img.shields.io/badge/Repo-GitHub-yellow.svg)](https://github.com/ignatandrei/FileExtension)
+[![Questions at StackOverflow](https://img.shields.io/badge/Questions-StackOverflow-yellow.svg)](https://stackoverflow.com/questions/tagged/FileExtension)
+[![Ask a question at StackOverflow](https://img.shields.io/badge/Ask%20a%20question-StackOverflow-yellow.svg)](https://stackoverflow.com/questions/ask?tags=FileExtension)
+[![Community discussions](https://img.shields.io/badge/Community%20discussions-GitHub-yellow.svg)](https://github.com/ignatandrei/FileExtension/discussions)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/ignatandrei/FileExtension/master/LICENSE)
 [![codecov](https://codecov.io/gh/ignatandrei/FileExtension/branch/master/graph/badge.svg?token=UA3ZA1KDQ5)](https://codecov.io/gh/ignatandrei/FileExtension)
 [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/FileExtension/) 
 [![.NET](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/ignatandrei/FileExtension/actions/workflows/dotnet.yml)

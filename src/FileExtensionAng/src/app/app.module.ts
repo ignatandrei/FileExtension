@@ -40,21 +40,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MPCv1Component } from './mpcv1/mpcv1.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Mpcv2Component } from './mpcv2/mpcv2.component';
-import { RegisteredMPCComponent } from './registered-mpc/registered-mpc.component';
-import { DisplayRegisterComponent } from './display-register/display-register.component';
+import { FileExtV1Component } from './file-ext-v1/file-ext-v1.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrimaryNavigComponent,
-    MPCv1Component,
-    Mpcv2Component,
-    RegisteredMPCComponent,
-    DisplayRegisterComponent
+    FileExtV1Component
   ],
   imports: [
     BrowserModule,

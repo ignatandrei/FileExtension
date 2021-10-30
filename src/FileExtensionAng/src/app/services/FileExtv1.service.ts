@@ -2,12 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Register } from '../classes/register';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MPCService {
+export class FileExtV1Service {
   constructor(private http: HttpClient) { }
   
   deterministic(appName: string) : Observable<string> {

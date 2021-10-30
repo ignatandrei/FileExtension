@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RecognizeFileExtensionBL;
@@ -20,23 +22,38 @@ namespace RecognizeFileExtWebAPI.Controllers
             _logger = logger;
         }
         [HttpGet]
-        public IEnumerable<string> GetExtensions()
+        public IEnumerable<string> GetExtensionsRecognized()
         {
             var all = new RecognizePlugins();
             return all.AllExtensions();
         } 
         [HttpPost]
-        public IEnumerable<string> PossibleExtensions(byte[] file)
+        public IEnumerable<string> PossibleExtensions(byte[] fileContent)
         {
             var all = new RecognizePlugins();
-            return all.PossibleExtensions(file);
+            return all.PossibleExtensions(fileContent);
 
         }
         [HttpPost]
-        public Recognize IsCorrectExtension(string extension, byte[] file)
+        public Recognize IsCorrectExtension(string extension, byte[] fileContent)
         {
             var all = new RecognizePlugins();
-            return all.RecognizeTheFile(file,extension);
+            return all.RecognizeTheFile(fileContent,extension);
+        }
+        [HttpPost]
+        public async Task<Recognize> IsFile(IFormFile file)
+        {
+            if (file.Length == 0)
+                return Recognize.GiveMeMoreInfo;
+            byte[] bContent;
+            using (var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+                bContent = stream.ToArray();
+
+            }
+            var ext = Path.GetExtension(file.FileName);
+            return IsCorrectExtension(ext, bContent);
         }
     }
 }

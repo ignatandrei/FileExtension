@@ -34,7 +34,12 @@ namespace RecognizeFileExtensionBL
         }
         public IEnumerable<string> AllExtensions()
         {
-            return recognizes.SelectMany(it => it.Extension).Distinct();
+            return recognizes
+                .SelectMany(it => it.Extension)
+                .Select(it => it.ToLowerInvariant())
+                .Distinct()
+                .OrderBy(it => it)
+                ;
         }
         public List<IRecognize> recognizes;
         public int NumberRecognizers

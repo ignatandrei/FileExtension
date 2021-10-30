@@ -71,9 +71,6 @@ namespace TestFileExtensions
             //var recog = r.recognizes;
             var AllExtensions= r
                 .AllExtensions()
-                .Select(it=>it.ToLowerInvariant())
-                .OrderBy(it => it)
-                .Distinct()
                 .ToArray(); 
             StepExecution.Current.Comment($"Number of extensions :{ AllExtensions.Length} ");
             StepExecution.Current.Comment($"Percentage :{ (extensions.Length * 100 / AllExtensions.Length).ToString("#.00")} % ");

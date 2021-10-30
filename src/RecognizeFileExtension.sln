@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecognizeFileExtensionBL", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestFileExtensions", "TestFileExtensions\TestFileExtensions.csproj", "{16613B81-A591-4261-AA35-3BBF87ACAE9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecognizeFileExtWebAPI", "RecognizeFileExtWebAPI\RecognizeFileExtWebAPI.csproj", "{A581DBEE-9807-48C0-B190-D669A49851B3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recognizers", "Recognizers", "{58C9FF7A-94DA-47DD-B1DC-C9D73B4ADBA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecognizeStatic", "RecognizeStatic\RecognizeStatic.csproj", "{84757383-B05A-4AC9-ACCD-2048B9BF2803}"
@@ -29,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSCG_GCK", "RSCG_GCK\RSCG_G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleExample", "ConsoleExample\ConsoleExample.csproj", "{808D8709-DC45-4F78-9449-9472299F32B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecognizeFileExtWebAPI", "RecognizeFileExtWebAPI\RecognizeFileExtWebAPI.csproj", "{3D9AABD3-71AA-4C77-B3D0-83F5A269BDB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +43,6 @@ Global
 		{16613B81-A591-4261-AA35-3BBF87ACAE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16613B81-A591-4261-AA35-3BBF87ACAE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16613B81-A591-4261-AA35-3BBF87ACAE9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A581DBEE-9807-48C0-B190-D669A49851B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A581DBEE-9807-48C0-B190-D669A49851B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A581DBEE-9807-48C0-B190-D669A49851B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A581DBEE-9807-48C0-B190-D669A49851B3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{84757383-B05A-4AC9-ACCD-2048B9BF2803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{84757383-B05A-4AC9-ACCD-2048B9BF2803}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84757383-B05A-4AC9-ACCD-2048B9BF2803}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -71,6 +67,10 @@ Global
 		{808D8709-DC45-4F78-9449-9472299F32B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{808D8709-DC45-4F78-9449-9472299F32B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{808D8709-DC45-4F78-9449-9472299F32B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9AABD3-71AA-4C77-B3D0-83F5A269BDB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9AABD3-71AA-4C77-B3D0-83F5A269BDB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9AABD3-71AA-4C77-B3D0-83F5A269BDB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9AABD3-71AA-4C77-B3D0-83F5A269BDB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

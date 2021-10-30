@@ -1,5 +1,4 @@
 # FileExtension
-Recognizers of file extensions
 [![GitHub repo](https://img.shields.io/badge/Repo-GitHub-yellow.svg)](https://github.com/ignatandrei/FileExtension)
 [![Questions at StackOverflow](https://img.shields.io/badge/Questions-StackOverflow-yellow.svg)](https://stackoverflow.com/questions/tagged/FileExtension)
 [![Ask a question at StackOverflow](https://img.shields.io/badge/Ask%20a%20question-StackOverflow-yellow.svg)](https://stackoverflow.com/questions/ask?tags=FileExtension)
@@ -21,13 +20,20 @@ There are 344 extensions of files ( 16 tested) .
 See https://fileextension.readthedocs.io/en/latest/BDD/LightBDDReport/
 
 Please help by making a PR by adding files to  https://github.com/ignatandrei/FileExtension/tree/master/src/TestFileExtensions/TestFiles
-
  
 # How to use it
 
-## Simple use
+Demo online: https://fileextension.azurewebsites.net/swagger/index.html
+
+NuGet Package: [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/
+FileExtension/)
+
+## Simple use 
+
+### .NET / C# 
 
 Add a reference to [![Nuget](https://img.shields.io/nuget/v/FileExtension)](https://www.nuget.org/packages/FileExtension/) ,
+
  
 ```csharp
 Console.WriteLine("Hello World!");
@@ -56,7 +62,9 @@ while(dir != null){
 }
 
 ```
+### Javascript / TypeScript
 
+TBD
 
 ## Contributors ✨
 

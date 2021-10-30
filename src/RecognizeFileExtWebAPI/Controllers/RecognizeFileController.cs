@@ -11,8 +11,9 @@ using RecognizerPlugin;
 
 namespace RecognizeFileExtWebAPI.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("api/v{version:apiVersion}/[controller]/[action]")]
     public class RecognizeFileController : ControllerBase
     {
         private readonly ILogger<RecognizeFileController> _logger;
@@ -27,21 +28,21 @@ namespace RecognizeFileExtWebAPI.Controllers
             var all = new RecognizePlugins();
             return all.AllExtensions();
         } 
+        
         [HttpPost]
         public IEnumerable<string> PossibleExtensions(byte[] fileContent)
         {
             var all = new RecognizePlugins();
             return all.PossibleExtensions(fileContent);
-
         }
         [HttpPost]
-        public Recognize IsCorrectExtension(string extension, byte[] fileContent)
+        public Recognize IsCorrectExtensionSendByte(string extension, byte[] fileContent)
         {
             var all = new RecognizePlugins();
             return all.RecognizeTheFile(fileContent,extension);
         }
         [HttpPost]
-        public async Task<Recognize> IsFile(IFormFile file)
+        public async Task<Recognize> IsCorrectExtensionSendFile(IFormFile file)
         {
             if (file.Length == 0)
                 return Recognize.GiveMeMoreInfo;
@@ -53,7 +54,7 @@ namespace RecognizeFileExtWebAPI.Controllers
 
             }
             var ext = Path.GetExtension(file.FileName);
-            return IsCorrectExtension(ext, bContent);
+            return IsCorrectExtensionSendByte(ext, bContent);
         }
     }
 }

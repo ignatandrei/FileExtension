@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FileExtV1Service } from '../services/FileExtv1.service';
 
 @Component({
   selector: 'app-file-ext-v1',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileExtV1Component implements OnInit {
 
-  constructor() { }
+  extensions:string[] =[];
+  constructor(private svc: FileExtV1Service) { }
 
   ngOnInit(): void {
+    this.svc.GetExtensionsRecognized().subscribe(
+      data => {
+        this.extensions=data;
+      },
+      err => {
+        console.log(err);
+      }
+    );  
   }
 
 }

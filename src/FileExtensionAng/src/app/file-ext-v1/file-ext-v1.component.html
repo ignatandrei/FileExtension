@@ -1,1 +1,19 @@
-<p>file-ext-v1 works!</p>
+<p></p>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> 
+          
+        <span>Number of extensions recognized : {{ extensions.length }} </span>
+         </mat-panel-title>
+      <mat-panel-description>
+        Click to see the {{ extensions.length }} extensions 
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <ul>
+        <li *ngFor="let element of extensions">{{element}}</li>
+      </ul>
+    
+  </mat-expansion-panel>
+</mat-accordion>

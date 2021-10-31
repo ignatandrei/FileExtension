@@ -41,14 +41,13 @@ namespace TestFileExtensions
             await Runner
                .AddSteps(Given_The_Recognizer)
                .AddSteps(
-                    _ => Then_Enumerate_Extensions_Recognized(),
-                    _ => Then_Enumerate_Extensions_Can_Be_Recognized()
-                    
+                    _ => Then_Extensions_Tested_Are_More_Than(16),
+                    _ => Then_Extensions_That_Can_Be_Recognized_Are_More_Than(300)                    
                )
            .RunAsync();
 
         }
-        private void Then_Enumerate_Extensions_Recognized()
+        private void Then_Extensions_Tested_Are_More_Than(int number)
         {
             extensions = new DirectoryTestData().ToArray()
                 .Select(it=> Path.GetExtension(it.First().ToString()))
@@ -59,6 +58,7 @@ namespace TestFileExtensions
                 .Distinct()
                 .ToArray()
                 ;
+            extensions.Should().HaveCountGreaterThanOrEqualTo(number);
             StepExecution.Current.Comment($"Number of files recognized:{ extensions.Length} ");
             foreach (var item in extensions)
             {
@@ -66,12 +66,16 @@ namespace TestFileExtensions
             }
         }
 
-        private void Then_Enumerate_Extensions_Can_Be_Recognized()
+        private void Then_Extensions_That_Can_Be_Recognized_Are_More_Than(int number)
         {
+
+
             //var recog = r.recognizes;
             var AllExtensions= r
                 .AllExtensions()
-                .ToArray(); 
+                .ToArray();
+
+            AllExtensions.Should().HaveCountGreaterThanOrEqualTo(number);
             StepExecution.Current.Comment($"Number of extensions :{ AllExtensions.Length} ");
             StepExecution.Current.Comment($"Percentage :{ (extensions.Length * 100 / AllExtensions.Length).ToString("#.00")} % ");
             foreach (var item in AllExtensions)

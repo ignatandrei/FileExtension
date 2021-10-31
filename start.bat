@@ -1,0 +1,1 @@
+wt new-tab -d . cmd /k "cd src && dotnet build && cd RecognizeFileExtWebAPI && dotnet run"  ;  split-pane -d . cmd /k "cd src && cd FileExtensionAng && npm i && ng serve"

@@ -17,23 +17,30 @@ namespace ConsoleExample
                 Console.WriteLine(item);
             }
             //find the sln
-            var dir =new DirectoryInfo( Directory.GetCurrentDirectory());
-            while(dir != null){
+            string file = FindSlnToBeRecognized();
+            var fileExtension = Path.GetExtension(file);
+            var canRecognize = r.CanRecognizeExtension(fileExtension);
+            Console.WriteLine($"file {file} can be  recognized {canRecognize}");
+            //found sln, now recognize
+            var byts = await File.ReadAllBytesAsync(file);
+            var found = r.RecognizeTheFile(byts, fileExtension);
+            Console.Write($"file {file} is recognized {found}");
+            return;
+        }
+        static string FindSlnToBeRecognized()
+        {
+            var dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            while (dir != null)
+            {
                 string file = Directory.GetFiles(dir.FullName, "*.sln").FirstOrDefault();
-                if(file == null)
+                if (file != null)
                 {
-                    dir = dir.Parent;
-                    continue;
+                    return file;
                 }
-                var fileExtension = Path.GetExtension(file);
-                var canRecognize = r.CanRecognizeExtension(fileExtension);
-                Console.WriteLine($"file {file} can be  recognized {canRecognize}");
-                //found sln, now recognize
-                var byts = await File.ReadAllBytesAsync(file);
-                var found = r.RecognizeTheFile(byts, fileExtension);
-                Console.Write($"file {file} is recognized {found}");
-                return;
+                dir = dir.Parent;
+
             }
+            return null;
         }
     }
 }

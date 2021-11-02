@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FileExtension" Version="2021.10.29.2108" />
+    <PackageReference Include="FileExtension" Version="2021.11.2.1330" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,6 @@ namespace ConsoleExample
     {
         static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             var r = new RecognizerPlugin.RecognizePlugins();
             //foreach (var item in r.AllExtensions())
             //{

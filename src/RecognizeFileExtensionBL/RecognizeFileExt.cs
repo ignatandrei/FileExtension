@@ -54,7 +54,7 @@ namespace RecognizeFileExtensionBL
         {
             return Recognizers(extension).Any();
         }
-        private IEnumerable<IRecognize> Recognizers(string extension)
+        protected IEnumerable<IRecognize> Recognizers(string extension)
         {
             extension = extension.ToLowerInvariant();
             var dot = extension.IndexOf(".");

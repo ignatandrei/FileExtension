@@ -14,38 +14,37 @@ namespace RecognizeFileExtWebAPI.Controllers
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]/[action]")]
-    public class RecognizeFileController : ControllerBase
+    public partial class RecognizeFileController : ControllerBase
     {
         private readonly ILogger<RecognizeFileController> _logger;
+        private readonly RecognizePlugins all;
 
-        public RecognizeFileController(ILogger<RecognizeFileController> logger)
+        public RecognizeFileController(ILogger<RecognizeFileController> logger, RecognizePlugins all)
         {
             _logger = logger;
+            this.all = all;
         }
         [HttpGet]
         public IEnumerable<string> GetExtensionsRecognized()
         {
-            var all = new RecognizePlugins();
+            
             return all.AllExtensions();
         } 
         
         [HttpPost]
         public IEnumerable<string> PossibleExtensions(byte[] fileContent)
         {
-            var all = new RecognizePlugins();
             return all.PossibleExtensions(fileContent);
         }
         [HttpPost]
         public Recognize IsCorrectExtensionSendByte(string extension, byte[] fileContent)
         {
-            var all = new RecognizePlugins();
             return all.RecognizeTheFile(fileContent,extension);
         }
-        [HttpPost]
-        public async Task<Recognize> IsCorrectExtensionSendFile(IFormFile file)
+        private async Task<byte[]> GetFileContents(IFormFile file)
         {
-            if (file.Length == 0)
-                return Recognize.GiveMeMoreInfo;
+            if ((file?.Length ?? 0) == 0)
+                return null;
             byte[] bContent;
             using (var stream = new MemoryStream())
             {
@@ -53,6 +52,15 @@ namespace RecognizeFileExtWebAPI.Controllers
                 bContent = stream.ToArray();
 
             }
+            return bContent;
+        }
+        [HttpPost]
+        public async Task<Recognize> IsCorrectExtensionSendFile(IFormFile file)
+        {
+            var bContent =await  GetFileContents(file);
+            if (bContent == null)
+                return Recognize.GiveMeMoreInfo;
+            
             var ext = Path.GetExtension(file.FileName);
             return IsCorrectExtensionSendByte(ext, bContent);
         }

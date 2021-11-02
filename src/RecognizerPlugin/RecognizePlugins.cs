@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace RecognizerPlugin
 {
-    public class RecognizePlugins : RecognizeFileExt
+    public partial class RecognizePlugins : RecognizeFileExt
     {
         public RecognizePlugins()
         {

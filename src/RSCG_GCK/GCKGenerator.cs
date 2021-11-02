@@ -15,16 +15,104 @@ namespace RSCG_GCK
             try
             {
                 var assembly = context.Compilation;
-                GenerateCustomSigGCK(context);
-                GenerateOffset(context);
+                var whatToGenerate = assembly.ContainsSymbolsWithName("RecognizePlugins");
+                if (whatToGenerate)
+                {
+                    GenerateIsFunctions_RecognizePlugins(context);
+                    return;
+                }
+                whatToGenerate = assembly.ContainsSymbolsWithName("RecognizeFileController");
+
+                if (whatToGenerate)
+                {
+                    GenerateIsFunctions_RecognizeController(context);
+                    return;
+                }
+                {
+                    GenerateCustomSigGCK(context);
+                    GenerateOffset(context);
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var severity = DiagnosticSeverity.Error;
                 var dd = new DiagnosticDescriptor(DiagnosticId, Title, $"err : {ex.Message}", Category, severity, isEnabledByDefault: true, description: $"err {ex.ToString()}");
                 var dg = Diagnostic.Create(dd, Location.None);
                 context.ReportDiagnostic(dg);
             }
+        }
+        private HashSet<string> Extensions()
+        {
+            var extensions = new HashSet<string>();
+            var lines = GetResourceFile("RSCG_GCK.customsigs_GCK.txt");
+            List<string> classes = new();
+            foreach (var l in lines)
+            {
+                var data = l.Replace("\r", "").Replace("\n", "").Trim();
+                if (data.StartsWith("#"))//comment
+                    continue;
+                if (string.IsNullOrEmpty(data))
+                    continue;
+                if (data.Contains("(none)"))
+                    continue;
+                if (data.Contains("(NONE)"))
+                    continue;
+                data = data.Replace(".", "_");
+                var split = data.Split(',');
+                string ext = split[2].Trim();
+                foreach (var item in ext.Split('|'))
+                {
+                    extensions.Add(item.Trim().ToUpper());
+                }
+
+            }
+            return extensions;
+        }
+        private void GenerateIsFunctions_RecognizeController(GeneratorExecutionContext context)
+        {
+
+            var extensions = Extensions();
+            var str = "namespace RecognizeFileExtWebAPI.Controllers{";
+            str += Environment.NewLine;
+            str += "public partial class RecognizeFileController{";
+            str += Environment.NewLine;
+            foreach (var item in extensions)
+            {
+                str += $@"
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public async System.Threading.Tasks.Task<RecognizeFileExtensionBL.Recognize>  Is_{item}(Microsoft.AspNetCore.Http.IFormFile file) 
+        {{
+            var bContent =await  GetFileContents(file);
+            if (bContent == null)
+                return RecognizeFileExtensionBL.Recognize.GiveMeMoreInfo;
+            return IsCorrectExtensionSendByte(""{item}"",bContent);
+        }}";
+            }
+            str += "}";
+            str += Environment.NewLine;
+            str += "}";
+            context.AddSource("RecognizePlugins_Is", str);
+        }
+        private void GenerateIsFunctions_RecognizePlugins(GeneratorExecutionContext context)
+        {
+
+            var extensions = Extensions();
+            var str = "namespace RecognizerPlugin{";
+            str += Environment.NewLine;
+            str += "public partial class RecognizePlugins{";
+            str += Environment.NewLine;
+            foreach (var item in extensions)
+            {
+                str += $@"
+                public RecognizeFileExtensionBL.Recognize  Is_{item}(byte[] content) 
+                {{
+                    return RecognizeTheFile(content, ""{item}"");
+                }}";
+            }
+            str += "}";
+            str += Environment.NewLine; 
+            str += "}";
+            context.AddSource("RecognizePlugins_Is", str);
         }
         string[] GetResourceFile(string resourceName)
         {
@@ -80,7 +168,7 @@ namespace {nameSpace}
 }}//end namespace
             
 ");
-            
+
         }
         private static readonly string DiagnosticId = "Gen";
         private static readonly string Title = "Gen";
@@ -90,7 +178,7 @@ namespace {nameSpace}
 
             var nameSpace = "RecognizeCustomSigs_GCK";
             var lines = GetResourceFile("RSCG_GCK.customsigs_GCK.txt");
-            List<string> classes = new ();
+            List<string> classes = new();
             foreach (var l in lines)
             {
                 var data = l.Replace("\r", "").Replace("\n", "").Trim();
@@ -116,7 +204,7 @@ namespace {nameSpace} {{
     }}
 }}            
 ";
-                context.AddSource($"MyGeneratorGCK{classes.Count}.cs",content);
+                context.AddSource($"MyGeneratorGCK{classes.Count}.cs", content);
                 classes.Add(className);
                 //if (classes.Count == 3) break;
                 //var r = new RecognizeFromLineCustomsigs(l);
@@ -141,7 +229,7 @@ namespace RecognizeCustomSigs_GCK
 
         public void Initialize(GeneratorInitializationContext context)
         {
-            
+
         }
     }
 }

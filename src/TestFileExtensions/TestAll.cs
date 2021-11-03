@@ -34,6 +34,30 @@ namespace TestFileExtensions
             .RunAsync();
 
         }
+
+        [Scenario]
+        [ScenarioCategory("TestSimple")]
+        public async void TestPossibleExtensionFOrDocx()
+        {
+            await Runner
+               .AddSteps(Given_The_Recognizer)
+               .AddAsyncSteps(_ => Then_ShouldRecognize_Multiple_Extension("TestFiles/andrei.docx"))
+            .RunAsync();
+
+        }
+
+        private async Task Then_ShouldRecognize_Multiple_Extension(string nameFile)
+        {
+             
+            var bytes = await File.ReadAllBytesAsync(nameFile);
+            var arr = r.PossibleExtensions(bytes);
+            arr.Should().HaveCountGreaterThanOrEqualTo(2);//word and zip
+            foreach (var item in arr)
+            {
+                StepExecution.Current.Comment($"{item}");
+            }
+        }
+        
         [Scenario]
         [ScenarioCategory("Data")]
         public async void EnumerateRecognizers()
